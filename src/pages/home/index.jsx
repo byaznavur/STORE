@@ -10,6 +10,7 @@ export class Home extends Component {
   state = {
     users: [],
     loading: false,
+    products: [],
   };
   async getUsers() {
     try {
@@ -30,6 +31,7 @@ export class Home extends Component {
   }
   render() {
     const { users, loading } = this.state;
+
     return (
       <div>
         <section className="herro d-flex align-items-start flex-column justify-content-center">
@@ -73,6 +75,8 @@ export class Home extends Component {
             </div>
           </div>
         </div>
+
+        <div className="products"></div>
       </div>
     );
   }

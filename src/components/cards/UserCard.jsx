@@ -7,7 +7,7 @@ export class UserCard extends Component {
     const { name, id, username, phone } = this.props;
 
     return (
-      <Card style={{ width: "20rem" }} className=" mx-auto">
+      <Card key={id} style={{ width: "20rem" }} className=" mx-auto">
         <Card.Body>
           <Card.Title>
             {id}.{name}

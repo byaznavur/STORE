@@ -4,6 +4,7 @@ import Loading from "../../components/loading";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { LIMIT } from "../../constants";
+import Posts from "../posts";
 
 export class Users extends Component {
   state = {
@@ -69,8 +70,12 @@ export class Users extends Component {
           {loading ? (
             <Loading />
           ) : (
-            users.map((user) => (
-              <Card style={{ width: "20rem" }} className="my-3 mx-auto ">
+            users.map((user, i) => (
+              <Card
+                key={i}
+                style={{ width: "20rem" }}
+                className="my-3 mx-auto "
+              >
                 <Card.Body>
                   <Card.Title>
                     {user.id}.{user.name}
@@ -105,6 +110,9 @@ export class Users extends Component {
                 {i + 1}
               </button>
             ))}
+        </div>
+        <div>
+          <Posts />
         </div>
       </div>
     );
