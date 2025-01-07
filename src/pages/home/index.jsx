@@ -1,11 +1,35 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 import "./home.css";
 import UserCard from "../../components/cards/UserCard";
+import Loading from "../../components/loading";
 
 export class Home extends Component {
+  state = {
+    users: [],
+    loading: false,
+  };
+  async getUsers() {
+    try {
+      this.setState({ loading: true });
+      let { data } = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      this.setState({ users: data });
+    } catch (error) {
+      alert(error);
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
+
+  componentDidMount() {
+    this.getUsers();
+  }
   render() {
+    const { users, loading } = this.state;
     return (
       <div>
         <section className="herro d-flex align-items-start flex-column justify-content-center">
@@ -38,8 +62,14 @@ export class Home extends Component {
           <div className="container users-wrapper">
             <h2 className="text-center fw-bold my-3">USERS</h2>
 
-            <div className="user-cards">
-              <UserCard />
+            <div className="user-cards d-flex flex-wrap gap-3 mx-auto">
+              {loading ? (
+                <Loading />
+              ) : (
+                users
+                  .slice(0, 3)
+                  .map((user, i) => <UserCard key={i} {...user} />)
+              )}
             </div>
           </div>
         </div>

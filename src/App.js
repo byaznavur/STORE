@@ -5,6 +5,7 @@ import Loading from "./components/loading";
 const Home = lazy(() => import("./pages/home/index"));
 const Products = lazy(() => import("./pages/products/index"));
 const Users = lazy(() => import("./pages/users/index"));
+const User = lazy(() => import("./pages/user/index"));
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route path="" element={<Home />} />
             <Route path="users" element={<Users />} />
+            <Route path="users/:userId" element={<User />} />
             <Route path="products" element={<Products />} />
           </Route>
         </Routes>

@@ -1,20 +1,24 @@
 import React, { Component } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export class UserCard extends Component {
   render() {
+    const { name, id, username, phone } = this.props;
+
     return (
-      <Card style={{ width: "20rem" }}>
+      <Card style={{ width: "20rem" }} className=" mx-auto">
         <Card.Body>
-          <Card.Title>Mr.John</Card.Title>
+          <Card.Title>
+            {id}.{name}
+          </Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {username} - {phone}
           </Card.Text>
           <div className="d-flex gap-3">
-            <Button variant="primary">POST</Button>
-            <Button variant="primary">COMMENT</Button>
-            <Button variant="primary">TODOS</Button>
+            <Link className=" btn btn-primary w-100" to="/users">
+              USERS
+            </Link>
           </div>
         </Card.Body>
       </Card>
